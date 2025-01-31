@@ -1,0 +1,686 @@
+:root {
+    --primary: #ffffff;
+    --secondary: #000000;
+    --accent: #C4C4C4;  /* Light gray */
+    --accent-red: #ff0033;  /* For highlights/active states */
+    --bg: #0a0a0a;
+    --terminal-bg: rgba(10, 10, 10, 0.8);
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-sans: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url('../assets/lily-cityscape.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15;
+    z-index: -1;
+    filter: brightness(0.7) contrast(1.2);
+}
+
+body {
+    background: var(--bg);
+    color: var(--primary);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Background Effects */
+.grain-overlay {
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Add data stream effect */
+.data-stream {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 0, 51, 0.1) 1px,
+        transparent 2px
+    );
+    background-size: 3px 100%;
+    animation: dataStream 20s linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes dataStream {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100% 0;
+    }
+}
+
+.scanline {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        transparent 50%,
+        rgba(0, 0, 0, 0.5) 50%
+    );
+    background-size: 100% 4px;
+    animation: scanline 10s linear infinite;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Base nav styles */
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0.4rem 1.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    background: #483c3cae;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.status {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    font-family: "Rubik Glitch", serif;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    display: contents;
+}
+
+.logo {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+
+.nav-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-family: "Rubik Glitch", serif;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent-red);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-left: 2rem;
+    padding-left: 2rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.social-link {
+    color: var(--primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.social-link:hover {
+    color: var(--accent-red);
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+
+/* Hero Section */
+.hero {
+    padding-top: 150px; 
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+/* Add to style.css */
+.lily-container {
+    position: relative;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.lily-container:hover .glitch-effect {
+    animation: glitch 0.2s steps(2) infinite;
+    opacity: 0.5;
+}
+/* Add more animations and effects */
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-2px, 2px);
+        filter: hue-rotate(90deg);
+    }
+    40% {
+        transform: translate(-2px, -2px);
+        filter: hue-rotate(180deg);
+    }
+    60% {
+        transform: translate(2px, 2px);
+        filter: hue-rotate(270deg);
+    }
+    80% {
+        transform: translate(2px, -2px);
+        filter: hue-rotate(360deg);
+    }
+}
+
+.lily-portrait {
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/lily-main.jpg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    filter: brightness(1.1) contrast(1.1);
+    transition: all 0.3s ease;
+}
+
+.scanning-effect {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(255, 0, 51, 0.1),
+        transparent
+    );
+    transform: translateY(-100%);
+    animation: scanning 3s linear infinite;
+    pointer-events: none;
+}
+
+.energy-field {
+    position: absolute;
+    inset: -10%;
+    border: 1px solid rgba(255, 0, 51, 0.2);
+    border-radius: 50%;
+    animation: energyPulse 4s ease-in-out infinite;
+}
+
+/* Add to animations.css */
+@keyframes scanning {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+}
+
+@keyframes energyPulse {
+    0%, 100% { 
+        transform: scale(1);
+        opacity: 0.2;
+    }
+    50% { 
+        transform: scale(1.1);
+        opacity: 0.4;
+    }
+}
+
+/* Update terminal styles in style.css */
+.terminal-window {
+    background: rgba(72, 60, 60, 0.681);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    height: 60vh;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(255, 0, 51, 0.1);
+}
+
+.terminal-header {
+    background: rgba(72, 60, 60, 0.681);
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+}
+
+.terminal-content {
+    padding: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    height: calc(100% - 40px);
+    overflow-y: auto;
+}
+
+.terminal-line {
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+
+.prompt {
+    color: var(--accent-red);
+}
+
+.cursor {
+    width: 8px;
+    height: 16px;
+    background: var(--terminal-green);
+    margin-left: 4px;
+    animation: blink 1s step-end infinite;
+}
+
+/* About Section */
+/* Add to style.css */
+/* About Section */
+.about {
+    position: relative;
+    min-height: 100vh;
+    padding: 6rem 2rem;
+    background: rgba(72, 60, 60, 0.681);
+}
+
+.cityscape-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('../assets/lily-cityscape.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 2rem;
+}
+
+.about-card {
+    background: rgba(72, 60, 60, 0.681);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    font-family: var(--font-mono);
+    letter-spacing: 0.1em;
+}
+
+/* Interface Section */
+.interface {
+    min-height: 100vh;
+    padding: 6rem 2rem;
+    background: rgba(72, 60, 60, 0.681);
+    position: relative;
+    overflow: hidden;
+}
+
+.interface-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    height: calc(100vh - 12rem);
+}
+
+.interface-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.interface-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.stat-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 0, 51, 0.2);
+}
+
+.stat-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.stat-bar {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+}
+
+.stat-fill {
+    height: 100%;
+    background: rgba(255, 0, 51, 0.7);
+    transition: width 1s ease;
+}
+
+.stat-value {
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    color: rgba(255, 0, 51, 0.9);
+}
+
+.tech-info {
+    flex: 1;
+    position: relative;
+    min-height: 300px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.neural-network {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.interface-right {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+
+.lily-side-portrait {
+    position: absolute;
+    inset: 0;
+    background-image: url('../assets/lily-side.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.7;
+    filter: contrast(1.2) brightness(0.8);
+}
+
+.data-overlay {
+    position: absolute;
+    inset: 0;
+    background: 
+        linear-gradient(90deg, rgba(0,0,0,0.8) 0%, transparent 100%),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            rgba(255, 0, 51, 0.1) 2px,
+            transparent 4px
+        );
+    animation: dataScroll 20s linear infinite;
+}
+
+@keyframes dataScroll {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 0 100%;
+    }
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+    .interface-split {
+        grid-template-columns: 1fr;
+        height: auto;
+        gap: 2rem;
+    }
+
+    .interface-right {
+        height: 50vh;
+    }
+
+    .tech-info {
+        min-height: 200px;
+    }
+}
+
+/* Connect Section */
+.connect {
+    min-height: 100vh;
+    padding: 6rem 2rem;
+    background: rgba(72, 60, 60, 0.681);
+    position: relative;
+}
+
+.connect::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../assets/lily-active.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.1;
+    z-index: -1;
+}
+
+.connection-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.connection-card {
+    background: rgba(72, 60, 60, 0.681);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.connection-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 0, 51, 0.1);
+}
+
+.connect-btn {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.5rem;
+    background: rgba(255, 0, 51, 0.2);
+    border: 1px solid rgba(255, 0, 51, 0.3);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.connect-btn:hover {
+    background: rgba(255, 0, 51, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Loading Screen */
+.loading-screen {
+    position: fixed;
+    inset: 0;
+    background: #483c3cae;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.loading-bar {
+    width: 200px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 1rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.loading-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: var(--accent);
+    animation: loading 2s ease infinite;
+}
+
+.glitch-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    mix-blend-mode: overlay;
+}
+
+.glitch-effect {
+    position: absolute;
+    inset: 0;
+    background: url('../assets/lily-active.jpg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    filter: brightness(1.5) contrast(1.2);
+}
+
+@media screen and (max-width: 768px) {
+    .hero {
+        grid-template-columns: 1fr;
+        padding-top: 120px;
+    }
+
+    .main-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+    }
+
+    .nav-left {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .nav-right {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-left: 0;
+        padding-left: 1rem;
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-link {
+        font-size: 0.9rem;
+    }
+
+    .terminal-window {
+        height: 50vh;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero {
+        padding: 100px 1rem 1rem 1rem;
+    }
+
+    .main-nav {
+        padding: 0.75rem;
+    }
+
+    .nav-right {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .social-links {
+        width: 100%;
+        justify-content: center;
+        padding-left: 0;
+        border-left: none;
+        padding-top: 0.5rem;
+        margin-top: 0.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .status {
+        font-size: 0.7rem;
+    }
+}

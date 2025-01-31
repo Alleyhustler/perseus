@@ -1,0 +1,219 @@
+/* Card Components */
+.card {
+    background: rgba(26, 26, 26, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 0, 51, 0.2);
+}
+
+/* Button Styles */
+.btn {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: var(--accent);
+    color: var(--primary);
+    box-shadow: 0 0 15px rgba(255, 0, 51, 0.4);
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: var(--primary);
+}
+
+.btn-primary:hover {
+    background: transparent;
+    color: var(--accent);
+}
+
+/* Progress Bars */
+.progress-container {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+/* Neural Network Visualization */
+.neural-network {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.neuron {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: neuronPulse 2s infinite;
+}
+
+.synapse {
+    position: absolute;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.3;
+    transform-origin: left center;
+}
+
+/* Terminal Components */
+.terminal-line {
+    margin: 0.5rem 0;
+    font-family: var(--font-mono);
+    opacity: 0;
+    animation: fadeSlideUp 0.3s ease forwards;
+}
+
+.terminal-input {
+    background: transparent;
+    border: none;
+    color: var(--terminal-green);
+    font-family: var(--font-mono);
+    width: 100%;
+    outline: none;
+}
+
+.terminal-response {
+    color: var(--gray-100);
+}
+
+.terminal-error {
+    color: var(--accent);
+}
+
+/* Loading Components */
+.loading-bar {
+    width: 200px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 1px;
+    overflow: hidden;
+    position: relative;
+}
+
+.loading-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: var(--accent);
+    animation: loading 2s ease infinite;
+}
+
+/* Status Indicators */
+.status-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+.status-online {
+    background: var(--terminal-green);
+    box-shadow: 0 0 10px rgba(51, 255, 51, 0.4);
+    animation: pulse 2s infinite;
+}
+
+.status-offline {
+    background: var(--accent);
+    box-shadow: 0 0 10px rgba(255, 0, 51, 0.4);
+}
+
+/* Glitch Effect Components */
+.glitch-text {
+    position: relative;
+    display: inline-block;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch-text::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--accent);
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch 3s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--terminal-green);
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch 2s infinite linear alternate-reverse;
+}
+
+/* Scanner Effect */
+.scanner {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.scanner::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: var(--accent);
+    opacity: 0.5;
+    animation: scanningBeam 2s linear infinite;
+}
+
+/* Data Stream Effect */
+.data-stream {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(
+        0deg,
+        transparent 0%,
+        rgba(255, 0, 51, 0.2) 50%,
+        transparent 100%
+    );
+    background-size: 100% 10px;
+    animation: dataStream 20s linear infinite;
+    pointer-events: none;
+}
+
+/* Energy Field Effect */
+.energy-field {
+    position: absolute;
+    inset: -20px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: energyField 10s linear infinite;
+}
